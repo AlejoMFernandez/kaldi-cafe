@@ -1,0 +1,1099 @@
+{
+ "id": "kaldi-cafe",
+ "nombre": "Kaldi Café de Especialidad",
+ "pais": "AR",
+ "idioma": "es",
+ "modo": "demo",
+ "whatsapp": "",
+ "instagram": "kaldicafepalermo",
+ "prefijoPedido": "KD",
+ "supabase": {
+  "url": "",
+  "anonKey": ""
+ },
+ "marca": {
+  "logo": "img/logo.svg",
+  "logoPanel": "img/logo-claro.svg",
+  "logoClaro": "img/logo-claro.svg",
+  "favicon": "img/favicon.svg",
+  "colores": {
+   "fondo": "#E9E2D6",
+   "superficie": "#F4EFE6",
+   "texto": "#1F2B45",
+   "primario": "#1F2B45",
+   "sobrePrimario": "#F4EFE6",
+   "acento": "#A8322A",
+   "sobreAcento": "#FFFFFF",
+   "borde": "#CDBFA8",
+   "suave": "#5B5446"
+  },
+  "fuentes": {
+   "titulos": "'Gilda Display', Georgia, serif",
+   "texto": "'Hanken Grotesk', system-ui, sans-serif",
+   "googleFonts": ""
+  },
+  "estilo": {
+   "forma": "recta",
+   "radio": "3px",
+   "sombra": "suave",
+   "borde": "1.5px",
+   "mayusculas": false
+  }
+ },
+ "modulos": {
+  "carta": true,
+  "carrito": true,
+  "reservas": false,
+  "admin": true,
+  "cartaQR": true
+ },
+ "horarios": {
+  "lun": [
+   [
+    "08:00",
+    "20:00"
+   ]
+  ],
+  "mar": [
+   [
+    "08:00",
+    "20:00"
+   ]
+  ],
+  "mie": [
+   [
+    "08:00",
+    "20:00"
+   ]
+  ],
+  "jue": [
+   [
+    "08:00",
+    "20:00"
+   ]
+  ],
+  "vie": [
+   [
+    "08:00",
+    "20:00"
+   ]
+  ],
+  "sab": [
+   [
+    "08:00",
+    "20:00"
+   ]
+  ],
+  "dom": [
+   [
+    "09:00",
+    "20:00"
+   ]
+  ]
+ },
+ "pedidos": {
+  "salidas": [
+   "mercadopago"
+  ],
+  "tipos": [
+   "retiro"
+  ],
+  "envio": 0,
+  "minimo": 0,
+  "retiroHoy": {
+   "cadaMin": 15,
+   "prepMin": 10,
+   "asap": true
+  },
+  "encargo": {
+   "anticipacionHoras": 24,
+   "diasAdelante": 10,
+   "franjas": [
+    {
+     "id": "manana",
+     "nombre": "Mañana",
+     "desde": "08:00",
+     "hasta": "13:00"
+    },
+    {
+     "id": "tarde",
+     "nombre": "Tarde",
+     "desde": "13:00",
+     "hasta": "20:00"
+    }
+   ]
+  },
+  "casillas": [
+   {
+    "id": "vaso",
+    "label": "Traigo mi vaso",
+    "sub": "Lo cargamos en tu vaso térmico"
+   }
+  ]
+ },
+ "pagos": {
+  "mercadopago": {
+   "endpoint": "https://kit-demos-amf.vercel.app/api/mp-preference",
+   "modo": "sandbox"
+  }
+ },
+ "cartaQR": {
+  "pedir": false,
+  "estilo": "marca",
+  "textos": {
+   "titulo": "Nuestra carta",
+   "sub": "Nicaragua 4604 · Palermo Soho"
+  }
+ },
+ "textos": {
+  "tuPedido": "Tu bolsita",
+  "verPedido": "Ver tu bolsita",
+  "carritoVacio": "Tu bolsita está vacía.",
+  "carritoVacioSub": "Sumá algo de la vidriera o del cafeto y aparece acá.",
+  "retiro": "Lo buscás por la ventanita",
+  "pagar": "Pagar y pasar a buscar",
+  "rhTitulo": "¿Cuándo pasás por la ventanita?",
+  "pedidoPagadoSub": "Pedido {codigo} pagado. Te lo preparamos para la ventanita.",
+  "seguir": "Seguir mirando"
+ },
+ "carta": {
+  "categorias": [
+   {
+    "id": "cafe",
+    "nombre": "Café caliente",
+    "orden": 0
+   },
+   {
+    "id": "frios",
+    "nombre": "Café frío",
+    "orden": 1
+   },
+   {
+    "id": "dulce",
+    "nombre": "Dulce",
+    "orden": 2
+   },
+   {
+    "id": "salado",
+    "nombre": "Salado",
+    "orden": 3
+   },
+   {
+    "id": "sintacc",
+    "nombre": "Sin TACC",
+    "orden": 4
+   },
+   {
+    "id": "bebidas",
+    "nombre": "Otras bebidas",
+    "orden": 5
+   },
+   {
+    "id": "promos",
+    "nombre": "Promos",
+    "orden": 6
+   },
+   {
+    "id": "alcohol",
+    "nombre": "Con alcohol",
+    "orden": 7
+   },
+   {
+    "id": "llevate",
+    "nombre": "Llevate Kaldi a casa",
+    "orden": 9,
+    "anticipacionHoras": 24,
+    "bajada": "Para encargar con un día de anticipación."
+   }
+  ],
+  "productos": [
+   {
+    "id": "americano",
+    "categoria": "cafe",
+    "nombre": "Americano",
+    "precio": 5000,
+    "orden": 0,
+    "adicionales": [
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "capuccino",
+    "categoria": "cafe",
+    "nombre": "Capuccino",
+    "precio": 5200,
+    "orden": 1,
+    "adicionales": [
+     {
+      "id": "vegetal",
+      "nombre": "Leche vegetal",
+      "precio": 900
+     },
+     {
+      "id": "sabor",
+      "nombre": "Saborizado",
+      "precio": 900
+     },
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "cortado",
+    "categoria": "cafe",
+    "nombre": "Cortado",
+    "precio": 4600,
+    "orden": 2,
+    "adicionales": [
+     {
+      "id": "vegetal",
+      "nombre": "Leche vegetal",
+      "precio": 900
+     },
+     {
+      "id": "sabor",
+      "nombre": "Saborizado",
+      "precio": 900
+     },
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "espresso",
+    "categoria": "cafe",
+    "nombre": "Espresso",
+    "precio": 4200,
+    "orden": 3,
+    "adicionales": [
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "espresso-doble",
+    "categoria": "cafe",
+    "nombre": "Espresso doble",
+    "precio": 4800,
+    "orden": 4,
+    "adicionales": [
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "flat-white",
+    "categoria": "cafe",
+    "nombre": "Flat white",
+    "precio": 5400,
+    "orden": 5,
+    "descripcion": "Doble ristretto y leche texturizada, sedosa.",
+    "foto": "img/flat-white-chica.webp",
+    "adicionales": [
+     {
+      "id": "vegetal",
+      "nombre": "Leche vegetal",
+      "precio": 900
+     },
+     {
+      "id": "sabor",
+      "nombre": "Saborizado",
+      "precio": 900
+     },
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "lagrima",
+    "categoria": "cafe",
+    "nombre": "Lágrima",
+    "precio": 4900,
+    "orden": 6,
+    "adicionales": [
+     {
+      "id": "vegetal",
+      "nombre": "Leche vegetal",
+      "precio": 900
+     },
+     {
+      "id": "sabor",
+      "nombre": "Saborizado",
+      "precio": 900
+     },
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "latte",
+    "categoria": "cafe",
+    "nombre": "Latte",
+    "precio": 5600,
+    "orden": 7,
+    "adicionales": [
+     {
+      "id": "vegetal",
+      "nombre": "Leche vegetal",
+      "precio": 900
+     },
+     {
+      "id": "sabor",
+      "nombre": "Saborizado",
+      "precio": 900
+     },
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "lungo",
+    "categoria": "cafe",
+    "nombre": "Lungo",
+    "precio": 4300,
+    "orden": 8,
+    "adicionales": [
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "macchiato",
+    "categoria": "cafe",
+    "nombre": "Macchiato",
+    "precio": 4400,
+    "orden": 9,
+    "adicionales": [
+     {
+      "id": "vegetal",
+      "nombre": "Leche vegetal",
+      "precio": 900
+     },
+     {
+      "id": "sabor",
+      "nombre": "Saborizado",
+      "precio": 900
+     },
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "magic",
+    "categoria": "cafe",
+    "nombre": "Magic",
+    "precio": 4900,
+    "orden": 10,
+    "adicionales": [
+     {
+      "id": "vegetal",
+      "nombre": "Leche vegetal",
+      "precio": 900
+     },
+     {
+      "id": "sabor",
+      "nombre": "Saborizado",
+      "precio": 900
+     },
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "mocaccino",
+    "categoria": "cafe",
+    "nombre": "Mocaccino",
+    "precio": 6100,
+    "orden": 11,
+    "adicionales": [
+     {
+      "id": "vegetal",
+      "nombre": "Leche vegetal",
+      "precio": 900
+     },
+     {
+      "id": "sabor",
+      "nombre": "Saborizado",
+      "precio": 900
+     },
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "ristretto",
+    "categoria": "cafe",
+    "nombre": "Ristretto",
+    "precio": 4100,
+    "orden": 12,
+    "adicionales": [
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "americano-frio",
+    "categoria": "frios",
+    "nombre": "Americano frío",
+    "precio": 5200,
+    "orden": 0,
+    "descripcion": "Espresso, agua fría y hielo.",
+    "foto": "img/americano-frio-chica.webp",
+    "adicionales": [
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "cold-brew",
+    "categoria": "frios",
+    "nombre": "Cold brew",
+    "precio": 5600,
+    "orden": 1,
+    "descripcion": "Hecho lento, en frío y durante horas.",
+    "foto": "img/cold-brew-chica.webp",
+    "adicionales": [
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "espresso-tonic",
+    "categoria": "frios",
+    "nombre": "Espresso tonic",
+    "precio": 6400,
+    "orden": 2,
+    "descripcion": "Espresso sobre tónica con naranja.",
+    "foto": "img/espresso-tonic-chica.webp",
+    "adicionales": [
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "flat-frio",
+    "categoria": "frios",
+    "nombre": "Flat frío",
+    "precio": 5400,
+    "orden": 3,
+    "adicionales": [
+     {
+      "id": "vegetal",
+      "nombre": "Leche vegetal",
+      "precio": 900
+     },
+     {
+      "id": "sabor",
+      "nombre": "Saborizado",
+      "precio": 900
+     },
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "frappe",
+    "categoria": "frios",
+    "nombre": "Frappé",
+    "precio": 6600,
+    "orden": 4,
+    "adicionales": [
+     {
+      "id": "vegetal",
+      "nombre": "Leche vegetal",
+      "precio": 900
+     },
+     {
+      "id": "sabor",
+      "nombre": "Saborizado",
+      "precio": 900
+     },
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "latte-frio",
+    "categoria": "frios",
+    "nombre": "Latte frío",
+    "precio": 5800,
+    "orden": 5,
+    "descripcion": "Espresso, leche fría y hielo.",
+    "foto": "img/latte-frio-chica.webp",
+    "adicionales": [
+     {
+      "id": "vegetal",
+      "nombre": "Leche vegetal",
+      "precio": 900
+     },
+     {
+      "id": "sabor",
+      "nombre": "Saborizado",
+      "precio": 900
+     },
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "moca-frio",
+    "categoria": "frios",
+    "nombre": "Moca frío",
+    "precio": 6200,
+    "orden": 6,
+    "adicionales": [
+     {
+      "id": "vegetal",
+      "nombre": "Leche vegetal",
+      "precio": 900
+     },
+     {
+      "id": "sabor",
+      "nombre": "Saborizado",
+      "precio": 900
+     },
+     {
+      "id": "shot",
+      "nombre": "Shot extra de café",
+      "precio": 600
+     }
+    ]
+   },
+   {
+    "id": "alfajor-marplatense",
+    "categoria": "dulce",
+    "nombre": "Alfajor marplatense",
+    "precio": 5400,
+    "orden": 0
+   },
+   {
+    "id": "alfajor-sable",
+    "categoria": "dulce",
+    "nombre": "Alfajor sablé de almendras",
+    "precio": 5300,
+    "orden": 1,
+    "descripcion": "Masa sablé de almendras y dulce de leche.",
+    "foto": "img/alfajor-sable-chica.webp"
+   },
+   {
+    "id": "alfajor-de-maicena",
+    "categoria": "dulce",
+    "nombre": "Alfajor de maicena",
+    "precio": 5500,
+    "orden": 2
+   },
+   {
+    "id": "bowl-de-frutas",
+    "categoria": "dulce",
+    "nombre": "Bowl de frutas",
+    "precio": 5000,
+    "orden": 3
+   },
+   {
+    "id": "cookie-kaldi",
+    "categoria": "dulce",
+    "nombre": "Cookie Kaldi",
+    "precio": 6500,
+    "orden": 4,
+    "descripcion": "Las virales: vainilla, chocolate o red velvet, grandes y blandas por dentro.",
+    "foto": "img/cookie-kaldi-chica.webp"
+   },
+   {
+    "id": "croissant",
+    "categoria": "dulce",
+    "nombre": "Croissant",
+    "precio": 4700,
+    "orden": 5,
+    "descripcion": "Hojaldre dorado y mantecoso.",
+    "foto": "img/croissant-chica.webp"
+   },
+   {
+    "id": "croissant-relleno-de-jyq",
+    "categoria": "dulce",
+    "nombre": "Croissant relleno de JyQ",
+    "precio": 7200,
+    "orden": 6
+   },
+   {
+    "id": "croissant-con-crema-de-avellanas",
+    "categoria": "dulce",
+    "nombre": "Croissant con crema de avellanas",
+    "precio": 7500,
+    "orden": 7
+   },
+   {
+    "id": "croissant-con-dulce-de-leche",
+    "categoria": "dulce",
+    "nombre": "Croissant con dulce de leche",
+    "precio": 5600,
+    "orden": 8
+   },
+   {
+    "id": "medialuna",
+    "categoria": "dulce",
+    "nombre": "Medialuna",
+    "precio": 3600,
+    "orden": 9
+   },
+   {
+    "id": "medialuna-jyq",
+    "categoria": "dulce",
+    "nombre": "Medialuna rellena de JyQ",
+    "precio": 5700,
+    "orden": 10,
+    "descripcion": "Medialuna calentita con jamón y queso.",
+    "foto": "img/medialuna-jyq-chica.webp"
+   },
+   {
+    "id": "medialuna-con-crema-de-avellanas",
+    "categoria": "dulce",
+    "nombre": "Medialuna con crema de avellanas",
+    "precio": 5900,
+    "orden": 11
+   },
+   {
+    "id": "medialuna-con-dulce-de-leche",
+    "categoria": "dulce",
+    "nombre": "Medialuna con dulce de leche",
+    "precio": 4800,
+    "orden": 12
+   },
+   {
+    "id": "pastafrola",
+    "categoria": "dulce",
+    "nombre": "Pastafrola",
+    "precio": 6200,
+    "orden": 13,
+    "descripcion": "Casera, de batata o membrillo, como la de la abuela.",
+    "foto": "img/pastafrola-chica.webp"
+   },
+   {
+    "id": "pepa",
+    "categoria": "dulce",
+    "nombre": "Pepa",
+    "precio": 2000,
+    "orden": 14
+   },
+   {
+    "id": "budin",
+    "categoria": "dulce",
+    "nombre": "Porción de budín",
+    "precio": 6300,
+    "orden": 15,
+    "descripcion": "Limón y amapolas o pera y arándanos.",
+    "foto": "img/budin-chica.webp"
+   },
+   {
+    "id": "porcion-torta",
+    "categoria": "dulce",
+    "nombre": "Porción de torta",
+    "precio": 13500,
+    "orden": 16,
+    "descripcion": "Hoy, Torta Kaldi: bizcochuelo, dulce de leche y frutos rojos.",
+    "foto": "img/porcion-torta-chica.webp"
+   },
+   {
+    "id": "tostadas-con-queso-crema-mermelada-o-mie",
+    "categoria": "dulce",
+    "nombre": "Tostadas con queso crema, mermelada o miel",
+    "precio": 8900,
+    "orden": 17
+   },
+   {
+    "id": "yogur-con-granola-y-frutas-de-estacion",
+    "categoria": "dulce",
+    "nombre": "Yogur con granola y frutas de estación",
+    "precio": 12000,
+    "orden": 18
+   },
+   {
+    "id": "bagel-veggie",
+    "categoria": "salado",
+    "nombre": "Bagel veggie",
+    "precio": 13500,
+    "orden": 0
+   },
+   {
+    "id": "avocado-crudo",
+    "categoria": "salado",
+    "nombre": "Avocado toast jamón crudo",
+    "precio": 13900,
+    "orden": 1,
+    "descripcion": "Pan casero, palta, jamón crudo y tomates secos.",
+    "foto": "img/avocado-crudo-chica.webp"
+   },
+   {
+    "id": "avocado-huevo",
+    "categoria": "salado",
+    "nombre": "Avocado toast de huevo revuelto",
+    "precio": 12900,
+    "orden": 2,
+    "descripcion": "Palta y huevo revuelto cremoso sobre pan casero.",
+    "foto": "img/avocado-huevo-chica.webp"
+   },
+   {
+    "id": "bagel-lomito",
+    "categoria": "salado",
+    "nombre": "Bagel de lomito",
+    "precio": 14500,
+    "orden": 3,
+    "descripcion": "Lomito, huevo, palta y cherrys. Contundente.",
+    "foto": "img/bagel-lomito-chica.webp"
+   },
+   {
+    "id": "chipa",
+    "categoria": "salado",
+    "nombre": "Chipa",
+    "precio": 6900,
+    "orden": 4
+   },
+   {
+    "id": "huevos-revueltos",
+    "categoria": "salado",
+    "nombre": "Huevos revueltos",
+    "precio": 4500,
+    "orden": 5
+   },
+   {
+    "id": "chipa-lomito",
+    "categoria": "salado",
+    "nombre": "Sándwich de chipa con lomito y queso",
+    "precio": 9500,
+    "orden": 6,
+    "descripcion": "Chipa relleno de lomito, queso y rúcula.",
+    "foto": "img/chipa-lomito-chica.webp"
+   },
+   {
+    "id": "sandwich-de-jamon-crudo-danbo-cherrys-y-",
+    "categoria": "salado",
+    "nombre": "Sándwich de jamón crudo, danbo, cherrys y rúcula",
+    "precio": 13000,
+    "orden": 7
+   },
+   {
+    "id": "tostado-de-jyq-en-pan-de-masa-madre",
+    "categoria": "salado",
+    "nombre": "Tostado de JyQ en pan de masa madre",
+    "precio": 9700,
+    "orden": 8
+   },
+   {
+    "id": "tostado-de-jyq-en-pan-arabe",
+    "categoria": "salado",
+    "nombre": "Tostado de JyQ en pan árabe",
+    "precio": 8500,
+    "orden": 9
+   },
+   {
+    "id": "alfacookie",
+    "categoria": "sintacc",
+    "nombre": "Alfacookie",
+    "precio": 4900,
+    "orden": 0
+   },
+   {
+    "id": "brownie",
+    "categoria": "sintacc",
+    "nombre": "Brownie",
+    "precio": 5300,
+    "orden": 1
+   },
+   {
+    "id": "cookie",
+    "categoria": "sintacc",
+    "nombre": "Cookie",
+    "precio": 2800,
+    "orden": 2
+   },
+   {
+    "id": "agua-caliente",
+    "categoria": "bebidas",
+    "nombre": "Agua caliente",
+    "precio": 1000,
+    "orden": 0
+   },
+   {
+    "id": "agua-agua-con-gas",
+    "categoria": "bebidas",
+    "nombre": "Agua/Agua con gas",
+    "precio": 3000,
+    "orden": 1
+   },
+   {
+    "id": "equipo-de-mate",
+    "categoria": "bebidas",
+    "nombre": "Equipo de mate",
+    "precio": 5000,
+    "orden": 2
+   },
+   {
+    "id": "exprimido-de-naranja",
+    "categoria": "bebidas",
+    "nombre": "Exprimido de naranja",
+    "precio": 6000,
+    "orden": 3
+   },
+   {
+    "id": "gaseosa-lata",
+    "categoria": "bebidas",
+    "nombre": "Gaseosa lata",
+    "precio": 3500,
+    "orden": 4
+   },
+   {
+    "id": "licuado-durazno-y-naranja",
+    "categoria": "bebidas",
+    "nombre": "Licuado durazno y naranja",
+    "precio": 6500,
+    "orden": 5
+   },
+   {
+    "id": "licuado-de-banana-con-leche",
+    "categoria": "bebidas",
+    "nombre": "Licuado de banana con leche",
+    "precio": 6400,
+    "orden": 6
+   },
+   {
+    "id": "limonada-con-menta-jengibre-y-almibar",
+    "categoria": "bebidas",
+    "nombre": "Limonada con menta, jengibre y almíbar",
+    "precio": 5500,
+    "orden": 7
+   },
+   {
+    "id": "matcha-latte",
+    "categoria": "bebidas",
+    "nombre": "Matcha latte",
+    "precio": 6200,
+    "orden": 8,
+    "descripcion": "Matcha batido con leche y una hoja arriba.",
+    "foto": "img/matcha-latte-chica.webp"
+   },
+   {
+    "id": "smoothie",
+    "categoria": "bebidas",
+    "nombre": "Smoothie",
+    "precio": 6800,
+    "orden": 9
+   },
+   {
+    "id": "submarino-o-chocolatada",
+    "categoria": "bebidas",
+    "nombre": "Submarino o chocolatada",
+    "precio": 5800,
+    "orden": 10
+   },
+   {
+    "id": "te-en-hebras",
+    "categoria": "bebidas",
+    "nombre": "Té en hebras",
+    "precio": 6500,
+    "orden": 11
+   },
+   {
+    "id": "promo-desayuno",
+    "categoria": "promos",
+    "nombre": "1 café + 2 medialunas",
+    "precio": 10500,
+    "orden": 0,
+    "foto": "img/croissant-chica.webp"
+   },
+   {
+    "id": "promo-torta",
+    "categoria": "promos",
+    "nombre": "2 bebidas calientes + 1 porción de torta + 1 croissant",
+    "precio": 26000,
+    "orden": 1,
+    "foto": "img/porcion-torta-chica.webp"
+   },
+   {
+    "id": "promo-tostadas",
+    "categoria": "promos",
+    "nombre": "2 bebidas calientes + 2 medialunas + tostadas con queso y mermelada o miel",
+    "precio": 25000,
+    "orden": 2,
+    "foto": "img/flat-white-chica.webp"
+   },
+   {
+    "id": "promo-alfajor",
+    "categoria": "promos",
+    "nombre": "2 bebidas calientes + 1 alfajor + 1 croissant relleno de JyQ",
+    "precio": 24000,
+    "orden": 3,
+    "foto": "img/alfajor-sable-chica.webp"
+   },
+   {
+    "id": "promo-sandwich",
+    "categoria": "promos",
+    "nombre": "Sándwich de crudo, danbo, cherrys y rúcula + gaseosa/agua + café",
+    "precio": 19000,
+    "orden": 4,
+    "foto": "img/flat-white-chica.webp"
+   },
+   {
+    "id": "aperol-con-jugo-de-naranja",
+    "categoria": "alcohol",
+    "nombre": "Aperol con jugo de naranja",
+    "precio": 8500,
+    "orden": 0
+   },
+   {
+    "id": "campari-con-jugo-de-naranja",
+    "categoria": "alcohol",
+    "nombre": "Campari con jugo de naranja",
+    "precio": 8500,
+    "orden": 1
+   },
+   {
+    "id": "cerveza-heineken-corona",
+    "categoria": "alcohol",
+    "nombre": "Cerveza Heineken/Corona",
+    "precio": 5200,
+    "orden": 2
+   },
+   {
+    "id": "copa-de-vino",
+    "categoria": "alcohol",
+    "nombre": "Copa de vino",
+    "precio": 8500,
+    "orden": 3
+   },
+   {
+    "id": "fernet-vaso",
+    "categoria": "alcohol",
+    "nombre": "Fernet vaso",
+    "precio": 8500,
+    "orden": 4
+   },
+   {
+    "id": "gin-tonic",
+    "categoria": "alcohol",
+    "nombre": "Gin tonic",
+    "precio": 8500,
+    "orden": 5
+   },
+   {
+    "id": "vermuth",
+    "categoria": "alcohol",
+    "nombre": "Vermuth",
+    "precio": 8500,
+    "orden": 6
+   },
+   {
+    "id": "bolsa-cafe",
+    "categoria": "llevate",
+    "nombre": "Bolsa de café",
+    "precio": 26000,
+    "descripcion": "El café de la casa para tu casa. En grano o molido.",
+    "foto": "img/bolsa-cafe-chica.webp",
+    "opciones": [
+     {
+      "id": "molienda",
+      "nombre": "Molienda",
+      "valores": [
+       {
+        "id": "grano",
+        "nombre": "En grano"
+       },
+       {
+        "id": "molido",
+        "nombre": "Molido (contanos para qué en la nota)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "caja-cookies",
+    "categoria": "llevate",
+    "nombre": "Caja de 4 Cookie Kaldi",
+    "precio": 26000,
+    "descripcion": "Cuatro cookies a elección en caja para regalar. Precio de ejemplo: 4 × Cookie Kaldi.",
+    "foto": "img/caja-cookies-chica.webp",
+    "opciones": [
+     {
+      "id": "mix",
+      "nombre": "Sabores",
+      "valores": [
+       {
+        "id": "mix",
+        "nombre": "Surtidas"
+       },
+       {
+        "id": "choco",
+        "nombre": "Todas de chocolate"
+       },
+       {
+        "id": "vainilla",
+        "nombre": "Todas de vainilla"
+       },
+       {
+        "id": "red",
+        "nombre": "Todas red velvet"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}
