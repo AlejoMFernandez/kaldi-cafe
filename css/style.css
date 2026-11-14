@@ -480,3 +480,4 @@ html.pop-abierto body{overflow:hidden}
 .pop-carta .kit-step button,.prod .qty .kit-step button,.ticket .kit-step button{min-width:40px}
 html.pop-abierto .bolsita-desk{visibility:hidden}
 @media (min-width:1024px) and (min-height:781px){.prod-txt b{min-height:2.3em}}
+.paquete:nth-child(2) figure{aspect-ratio:1/1}.paquete:nth-child(2) figure img{object-position:50% 46%}
