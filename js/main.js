@@ -106,7 +106,8 @@ $$('.fila, .tickets').forEach(f => {
 });
 
 /* ---------- promos: la del momento del día ---------- */
-const franja = T.h < 12 ? 'manana' : T.h < 16 ? 'mediodia' : 'tarde';
+const hRef = q === 'dia' && !(T.h >= 8 && T.h < 20) ? 10 : T.h;
+const franja = hRef < 12 ? 'manana' : hRef < 16 ? 'mediodia' : 'tarde';
 const tk = $(`.ticket[data-franja~="${franja}"]`);
 if (tk) { tk.classList.add('ahora'); tk.insertAdjacentHTML('afterbegin', '<span class="chip-ahora">Ideal ahora</span>'); }
 
