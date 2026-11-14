@@ -283,7 +283,8 @@ html.oculta-pill .kit-demo-pill,html.pop-abierto .kit-demo-pill{opacity:0!import
 .ticket .chip-ahora{position:absolute;top:-16px;right:14px;background:var(--cereza);color:#fff;font-size:12px;font-weight:600;letter-spacing:.06em;padding:5px 10px}
 @media (hover:hover){.ticket:hover{transform:rotate(0) translateY(-6px)}}
 @media (min-width:1024px){
-  .tickets{overflow:visible;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:min(100% - 2*var(--pad),1080px);margin:0 auto;gap:34px 22px;padding:14px 0 26px}
+  .tickets{overflow:visible;display:flex;flex-wrap:wrap;justify-content:center;width:min(100% - 2*var(--pad),1100px);margin:0 auto;gap:38px 24px;padding:14px 0 26px}
+  .tickets .ticket{flex:0 0 calc((100% - 48px)/3)}
   .ticket{min-width:0}
   .ticket h3{font-size:22px}
   .ticket:nth-child(odd){--r:-.8deg}.ticket:nth-child(even){--r:.8deg}
@@ -388,7 +389,6 @@ html.pop-abierto body{overflow:hidden}
   .prod-txt b{min-height:0}
 }
 
-@media (min-width:1360px){.tickets{grid-template-columns:repeat(5,minmax(0,1fr));width:min(100% - 2*var(--pad),1180px);gap:18px}.ticket{padding:18px 16px 22px}.ticket h3{font-size:21px}.ticket .precio{font-size:23px}}
 .ticket .pie{flex-wrap:wrap}
 .acciones{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:center;align-items:center}
 .horarios .acciones{justify-content:flex-start}
@@ -399,14 +399,12 @@ html.pop-abierto body{overflow:hidden}
 .bolsita-desk:not(.on){visibility:hidden;transition:transform .45s,visibility 0s .45s}
 /* noche desde el primer cuadro de la intro (sin destello de día) */
 .con-intro .muro .noche-capa{opacity:1}
-.con-intro .muro .letras span:not(.halo){color:#F3C985}
-.con-intro .muro .muro-s,.con-intro .muro .tecla{color:#EFE6D6}
+.con-intro .muro .letras span:not(.halo){color:#2a251f}
+.con-intro .muro .muro-s{color:#5b5446}
 /* hero en el celu: más grande y con aire repartido */
 @media (max-width:767px){
   .letras{font-size:27vw;letter-spacing:.06em;margin-right:-.06em}
   .muro-s{font-size:36px;margin-top:10px}
-  .muro-pie{margin-top:44px;gap:22px}
-  .muro .acciones{margin-top:34px}
 }
 .enc-nota b{font-weight:600}
 
@@ -420,3 +418,65 @@ html.pop-abierto body{overflow:hidden}
   .ficha .pie{margin-top:6px}
 }
 @media (max-width:899px){.ficha .precio{font-size:19px}.ficha .btn{padding:0 14px;font-size:14px;flex:none}.ficha .pie{gap:6px}}
+
+/* ===== hero: el cartel solo, placa abajo a la izquierda y la tecla abajo a la derecha ===== */
+.muro{padding-bottom:calc(var(--barra) + 120px)}
+.muro .placa2{position:absolute;left:var(--pad);bottom:calc(var(--barra) + 34px + env(safe-area-inset-bottom));z-index:2}
+.muro .tecla{position:absolute;right:var(--pad);bottom:calc(var(--barra) + 34px + env(safe-area-inset-bottom));z-index:2}
+@media (max-width:767px){
+  .muro .placa2{font-size:13px;padding:10px 14px;max-width:calc(100% - 2*var(--pad) - 64px)}
+  .muro .tecla{gap:0}
+  .muro .tecla>span:last-child{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+}
+@media (min-width:1024px){
+  .muro{padding-bottom:120px}
+  .muro .placa2,.muro .tecla{bottom:40px}
+  .muro .placa2{left:clamp(40px,4vw,72px)}
+  .muro .tecla{right:clamp(84px,7vw,110px)}
+}
+
+/* ===== tarjetas de la vidriera: el + (y el selector de cantidad) va sobre la foto ===== */
+.prod .qty{position:absolute;right:8px;bottom:22px;z-index:2}
+.prod .qty .kit-add{box-shadow:0 0 0 3px rgba(244,239,230,.9),0 6px 14px rgba(0,0,0,.3)}
+.prod .qty .kit-step{background:var(--marino);color:var(--piedra-3);box-shadow:0 0 0 3px rgba(244,239,230,.9),0 6px 14px rgba(0,0,0,.3);border-radius:22px;min-height:42px}
+.prod .qty .kit-step button{width:36px;height:42px;color:inherit;background:none;border:0}
+.prod .qty .kit-step output{min-width:24px;text-align:center;font-weight:600}
+.prod-txt{grid-template-columns:minmax(0,1fr);gap:4px}
+.prod-txt b{grid-column:1;grid-row:1}
+.prod-txt .precio{grid-column:1;grid-row:2;font-size:16px}
+.prod-txt p{grid-row:3;margin-top:2px}
+@media (min-width:1024px){.prod-txt b{min-height:2.3em}}
+
+/* ===== tickets: precio y control con lugar ===== */
+.ticket .pie{flex-wrap:nowrap}
+.ticket .pie [data-kit-qty]{flex:none}
+
+/* ===== la historia (foto + texto) ===== */
+.historia{padding:var(--aire) var(--pad);display:grid;gap:clamp(30px,5vw,72px);width:min(100%,1200px);margin:0 auto;align-items:center}
+.hist-foto{margin:0;position:relative;aspect-ratio:4/5;overflow:hidden;box-shadow:0 24px 40px -24px rgba(40,25,10,.55)}
+.hist-foto img{width:100%;height:100%;object-fit:cover}
+.hist-txt{display:grid;gap:14px;max-width:52ch;position:relative}
+.hist-txt .script{font-family:var(--t-script);font-size:clamp(28px,4vw,42px);color:var(--cereza);line-height:1.2}
+.hist-txt h2{font-family:var(--t-titulo);font-weight:400;font-size:clamp(34px,4.6vw,58px);line-height:1.08}
+.hist-txt p{font-size:17px;line-height:1.7}
+.hist-cabra{width:150px;margin-top:6px}
+.hist-cabra svg{width:100%;height:auto;display:block}
+@media (min-width:900px){.historia{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)}.hist-foto{max-height:78vh}}
+@media (min-width:1024px){
+  .prod .foto{aspect-ratio:1/1}
+  .prod-txt p{-webkit-line-clamp:2}
+  .prod-txt b{min-height:0;font-size:19px}
+  .estantes{gap:36px}
+  .vidriera .sec-head{margin-bottom:30px}
+}
+@media (min-width:1024px) and (max-height:780px){.prod{max-width:165px}.prod-txt p{display:none}.estantes{gap:26px}.vidriera{padding-block:60px}}
+@media (min-width:1024px){.bolsita-desk{top:auto;bottom:22px;transform:translateY(160%)}.bolsita-desk.on{transform:none}}
+/* popup de la carta en el celu: el selector va debajo, con lugar para el texto */
+@media (max-width:767px){
+  .pop-carta .kit-item{grid-template-columns:64px minmax(0,1fr)!important;row-gap:8px}
+  .pop-carta .kit-item:not(:has(.kit-item__foto)){grid-template-columns:minmax(0,1fr)!important}
+  .pop-carta .kit-item__side{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+}
+.pop-carta .kit-step button,.prod .qty .kit-step button,.ticket .kit-step button{min-width:40px}
+html.pop-abierto .bolsita-desk{visibility:hidden}
+@media (min-width:1024px) and (min-height:781px){.prod-txt b{min-height:2.3em}}

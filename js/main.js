@@ -17,10 +17,10 @@ const T = ahoraBA();
 const abre = T.dom ? 9 : 8;
 let abierto = (T.h + T.m / 60) >= abre && T.h < 20;
 if (q === 'dia') abierto = true; if (q === 'noche') abierto = false;
-const estadoCorto = abierto ? 'Abierto ahora · hasta las 20' : `Cerrado · abre ${T.h >= 20 ? 'mañana' : 'hoy'} a las ${T.h >= 20 ? (T.sab ? 9 : 8) : abre}`;
+const estadoCorto = abierto ? 'Abierto ahora · hasta las 20:00 hs' : `Cerrado · abre ${T.h >= 20 ? 'mañana' : 'hoy'} a las ${T.h >= 20 ? (T.sab ? 9 : 8) : abre}:00 hs`;
 $$('[data-estado], [data-estado-largo]').forEach(e => e.textContent = estadoCorto);
 if (!abierto) { $$('.placa2 i').forEach(i => i.style.background = '#9a3b2f'); $('.horarios .ahora')?.classList.add('cerrado'); }
-const ev = $('[data-estado-vent]'); if (ev) ev.textContent = abierto ? 'Hoy la ventanita está abierta hasta las 20.' : 'Ahora está cerrada: lo podés dejar pedido para cuando abra.';
+const ev = $('[data-estado-vent]'); if (ev) ev.textContent = abierto ? 'Hoy la ventanita está abierta hasta las 20:00 hs.' : 'Ahora está cerrada: lo podés dejar pedido para cuando abra.';
 
 /* ---------- 1 · el cartel: letras con sombra que sigue la luz ---------- */
 const muro = $('.muro');
@@ -75,14 +75,10 @@ if (muro) {
   }
   tecla.addEventListener('click', () => noche(!muro.classList.contains('noche'), true));
   addEventListener('resize', pedir, { passive: true });
-  // intro: arranca de noche con el cartel prendido y amanece (si el local está abierto)
+  // intro: el muro arranca a oscuras y el cartel se prende (siempre arranca prendido; la tecla lo apaga)
   if (root.classList.contains('con-intro')) {
-    noche(true, true);
-    setTimeout(() => {
-      root.classList.add('listo');
-      setTimeout(() => { if (abierto) { tx = .22; ty = .05; lx = -.2; ly = .6; noche(false); pedir(); } root.classList.remove('con-intro'); }, 700);
-    }, 550);
-  } else { root.classList.add('listo'); noche(!abierto); }
+    setTimeout(() => { root.classList.add('listo'); noche(true, true); root.classList.remove('con-intro'); }, 380);
+  } else { root.classList.add('listo'); noche(true); }
 }
 
 /* ---------- entradas: la luz se prende ---------- */
@@ -92,7 +88,7 @@ $$('.rv').forEach(el => io.observe(el));
 /* ---------- nav: sección visible ---------- */
 const links = $$('.tabbar a, .indice a');
 const ion = new IntersectionObserver(es => es.forEach(e => {
-  if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + (e.target.id === 'promos' || e.target.id === 'llevate' ? (innerWidth < 1024 ? 'vidriera' : e.target.id) : e.target.id)));
+  if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + (innerWidth < 1024 ? ({ promos: 'vidriera', historia: 'llevate' }[e.target.id] || e.target.id) : e.target.id)));
 }), { rootMargin: '-45% 0px -50% 0px' });
 $$('main > section[id]').forEach(s => ion.observe(s));
 
@@ -159,7 +155,7 @@ function pintarBolsita(lineas) {
   const n = lineas.reduce((a, l) => a + (l.cant || 1), 0);
   $$('.bolsita__n').forEach(b => { b.textContent = n; b.hidden = n === 0 && b.closest('.tabbar'); });
   $('.bolsita-desk').hidden = false;
-  $('.bolsita-desk').classList.toggle('on', n > 0 || scrollY > innerHeight * .8);
+  $('.bolsita-desk').classList.toggle('on', scrollY > innerHeight * .8);
 }
 pintarBolsita(kit.carrito.lineas);
 document.addEventListener('kit:carrito', e => pintarBolsita(e.detail.lineas));
@@ -171,9 +167,9 @@ const iop = new IntersectionObserver(es => {
   es.forEach(e => e.isIntersecting ? tapan.add(e.target) : tapan.delete(e.target));
   const desk = innerWidth >= 1024;
   // celu: se esconde sobre el cartel y el cafeto · desktop: solo se muestra en el cartel y en el footer
-  root.classList.toggle('oculta-pill', desk ? !(tapan.has(muro) || tapan.has($('.piepag'))) : (tapan.has(muro) || tapan.has($('#cafeto'))));
+  root.classList.toggle('oculta-pill', desk && !tapan.has($('.piepag')));
 }, { threshold: .25 });
-[muro, $('#cafeto'), $('.piepag')].forEach(el => el && iop.observe(el));
+[muro, $('.piepag')].forEach(el => el && iop.observe(el));
 
 /* ---------- encargos: elegir opción y día ---------- */
 document.addEventListener('click', e => {
@@ -195,75 +191,3 @@ $('#encargo-pop .btn')?.addEventListener('click', () => {
   setTimeout(() => kit.carrito.abrir(), 420);
 });
 
-/* ---------- 2 · el cafeto de Kaldi ---------- */
-const escena = $('#cafeto');
-if (escena) {
-  const datos = JSON.parse(escena.dataset.bebidas);
-  const cerezas = $$('.cereza', escena);
-  const cabra = $('.cabra', escena), zona = $('.cabra-zona', escena), ficha = $('.ficha', escena), boing = $('.boing', escena), cont = $('.contador b', escena);
-  const probadas = new Set(); let ocupada = false;
-  datos.forEach(d => { const p = P(d.id); if (p?.precio != null) d.precio = plata(p.precio); });
-  function ubicar() {
-    const rama = $$('.rama', escena).find(s => getComputedStyle(s).display !== 'none'); if (!rama) return;
-    const e = escena.getBoundingClientRect();
-    $$('.ancla', rama).forEach(a => {
-      const r = a.getBoundingClientRect(), c = cerezas[+a.dataset.i]; if (!c) return;
-      c.style.setProperty('--xc', (r.left + r.width / 2 - e.left) + 'px');
-      c.style.setProperty('--yc', (r.top + r.height / 2 - e.top) + 'px');
-    });
-  }
-  ubicar(); new ResizeObserver(ubicar).observe(escena);
-  const boca = () => { const r = cabra.getBoundingClientRect(); return { x: r.left + r.width * .87, y: r.top + r.height * .37 }; };
-  function darle(i, desde) {
-    if (ocupada) return; ocupada = true;
-    escena.classList.remove('invita'); ficha.classList.remove('abierta');
-    const c = cerezas[i], r = desde || c.getBoundingClientRect();
-    const x0 = r.left + r.width / 2, y0 = r.top + r.height / 2, b = boca();
-    c.classList.add('comida');
-    const f = document.createElement('div'); f.className = 'fantasma'; document.body.append(f);
-    f.style.transform = `translate(${x0}px,${y0}px)`;
-    cabra.classList.add('apunta');
-    f.animate([{ transform: `translate(${x0}px,${y0}px)` }, { transform: `translate(${(x0 + b.x) / 2}px,${Math.min(y0, b.y) - 70}px) scale(1.1)`, offset: .5 }, { transform: `translate(${b.x}px,${b.y}px) scale(.4)` }],
-      { duration: reduce ? 1 : 520, easing: 'cubic-bezier(.4,0,.6,1)' }).onfinish = () => {
-      f.remove(); cabra.classList.remove('apunta'); cabra.classList.add('mastica');
-      setTimeout(() => {
-        cabra.classList.remove('mastica'); cabra.classList.add('salta');
-        const e = escena.getBoundingClientRect(), cr = cabra.getBoundingClientRect();
-        boing.style.left = (cr.left - e.left + cr.width * .55) + 'px'; boing.style.top = (cr.top - e.top - 10) + 'px';
-        boing.textContent = ['¡Boing!', '¡Hop!', '¡Muuuy bien!', '¡Otra!'][probadas.size % 4];
-        boing.classList.remove('va'); void boing.offsetWidth; boing.classList.add('va');
-        setTimeout(() => { cabra.classList.remove('salta'); mostrar(i); }, reduce ? 0 : 640);
-      }, reduce ? 0 : 720);
-    };
-  }
-  function mostrar(i) {
-    const d = datos[i];
-    const img = $('img', ficha); img.src = d.foto; img.alt = d.nombre;
-    $('.tipo', ficha).textContent = d.tipo; $('h3', ficha).textContent = d.nombre;
-    $('p', ficha).textContent = d.desc; $('.precio', ficha).textContent = d.precio;
-    ficha.dataset.i = i; ficha.classList.add('abierta');
-    probadas.add(i); cont.textContent = `${probadas.size}/${datos.length}`;
-    setTimeout(() => { const c = cerezas[i]; c.classList.remove('comida'); c.classList.add('crece'); setTimeout(() => c.classList.remove('crece'), 700); ocupada = false; }, 500);
-  }
-  $('.x', ficha).addEventListener('click', () => ficha.classList.remove('abierta'));
-  $('.sumar', ficha).addEventListener('click', e => kit.carrito.agregar(datos[ficha.dataset.i].id, 1, { origen: e.currentTarget }));
-  const sobre = ev => { const r = zona.getBoundingClientRect(); return ev.clientX > r.left - 20 && ev.clientX < r.right + 20 && ev.clientY > r.top - 20 && ev.clientY < r.bottom + 20; };
-  cerezas.forEach((c, i) => {
-    let arr = null;
-    c.addEventListener('pointerdown', ev => { if (ocupada) return; arr = { x: ev.clientX, y: ev.clientY, mov: false, f: null }; c.setPointerCapture(ev.pointerId); });
-    c.addEventListener('pointermove', ev => {
-      if (!arr) return;
-      if (!arr.mov && Math.hypot(ev.clientX - arr.x, ev.clientY - arr.y) > 8) { arr.mov = true; arr.f = document.createElement('div'); arr.f.className = 'fantasma'; document.body.append(arr.f); c.style.opacity = '.25'; }
-      if (arr.mov) { arr.f.style.transform = `translate(${ev.clientX}px,${ev.clientY}px)`; const s = sobre(ev); escena.classList.toggle('apuntando', s); cabra.classList.toggle('apunta', s); }
-    });
-    const fin = ev => {
-      if (!arr) return; const a = arr; arr = null; c.style.opacity = '';
-      escena.classList.remove('apuntando'); cabra.classList.remove('apunta');
-      if (!a.mov) return darle(i);
-      a.f.remove();
-      if (ev.type === 'pointerup' && sobre(ev)) darle(i, { left: ev.clientX - 10, top: ev.clientY - 10, width: 20, height: 20 });
-    };
-    c.addEventListener('pointerup', fin); c.addEventListener('pointercancel', fin);
-    c.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); darle(i); } });
-  });
-}
