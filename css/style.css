@@ -409,3 +409,14 @@ html.pop-abierto body{overflow:hidden}
   .muro .acciones{margin-top:34px}
 }
 .enc-nota b{font-weight:600}
+
+/* ficha del cafeto en el celu: entra todo (nombre de 2 líneas incluido) */
+@media (max-width:899px){
+  .ficha{height:216px;grid-template-columns:104px minmax(0,1fr)}
+  .ficha img{width:104px;height:190px}
+  .ficha h3{font-size:21px;line-height:1.12}
+  .ficha p{font-size:14.5px;height:63px}
+  .ficha>div{padding-right:28px}
+  .ficha .pie{margin-top:6px}
+}
+@media (max-width:899px){.ficha .precio{font-size:19px}.ficha .btn{padding:0 14px;font-size:14px;flex:none}.ficha .pie{gap:6px}}

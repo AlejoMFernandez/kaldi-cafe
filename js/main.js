@@ -169,9 +169,11 @@ addEventListener('scroll', () => pintarBolsita(kit.carrito.lineas), { passive: t
 const tapan = new Set();
 const iop = new IntersectionObserver(es => {
   es.forEach(e => e.isIntersecting ? tapan.add(e.target) : tapan.delete(e.target));
-  root.classList.toggle('oculta-pill', innerWidth < 1024 && tapan.size > 0);
+  const desk = innerWidth >= 1024;
+  // celu: se esconde sobre el cartel y el cafeto · desktop: solo se muestra en el cartel y en el footer
+  root.classList.toggle('oculta-pill', desk ? !(tapan.has(muro) || tapan.has($('.piepag'))) : (tapan.has(muro) || tapan.has($('#cafeto'))));
 }, { threshold: .25 });
-[muro, $('#cafeto')].forEach(el => el && iop.observe(el));
+[muro, $('#cafeto'), $('.piepag')].forEach(el => el && iop.observe(el));
 
 /* ---------- encargos: elegir opción y día ---------- */
 document.addEventListener('click', e => {
